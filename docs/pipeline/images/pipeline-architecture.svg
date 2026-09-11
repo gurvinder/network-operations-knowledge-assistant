@@ -1,246 +1,207 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 980" font-family="Inter, -apple-system, sans-serif" font-size="12">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 755" font-family="Inter, -apple-system, sans-serif" font-size="12">
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#4a5568"/>
     </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0"/>
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#805ad5"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e53e3e"/>
+    </marker>
     <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#718096"/>
     </marker>
-    <marker id="arrowhead-refresh" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0"/>
-    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="980" fill="#f7fafc" rx="8"/>
+  <rect width="1100" height="755" fill="#f7fafc" rx="8"/>
 
   <!-- Title -->
-  <text x="600" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">Network Operations Knowledge Assistant - Pipeline Architecture</text>
+  <text x="550" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a202c">Network Operations Knowledge Assistant - Pipeline Architecture</text>
 
-  <!-- ===== KNOWLEDGE TUNING PIPELINE (Left column) ===== -->
+  <!-- ===== DATA LAYER ===== -->
+  <rect x="30" y="42" width="1040" height="185" rx="8" fill="#ebf8ff" stroke="#3182ce" stroke-width="2"/>
+  <text x="50" y="60" font-size="12" font-weight="bold" fill="#2c5282">DATA LAYER</text>
+  <text x="170" y="60" font-size="9" fill="#4a5568">Documents processed once, consumed by both FT and Inference layers</text>
 
   <!-- Document Sources -->
-  <rect x="30" y="55" width="420" height="100" rx="6" fill="#ebf8ff" stroke="#3182ce" stroke-width="1.5"/>
-  <text x="240" y="73" text-anchor="middle" font-size="11" font-weight="bold" fill="#2c5282">TRAINING DOCUMENT SOURCES</text>
-  <rect x="45" y="82" width="120" height="60" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="105" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">NOC Runbooks</text>
-  <text x="105" y="113" text-anchor="middle" font-size="9" fill="#718096">Alarm, Transport</text>
-  <text x="105" y="125" text-anchor="middle" font-size="9" fill="#718096">RAN, Core, Escal.</text>
-  <rect x="175" y="82" width="120" height="60" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="235" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">3GPP / ETSI</text>
-  <text x="235" y="113" text-anchor="middle" font-size="9" fill="#718096">TS 32.111</text>
-  <text x="235" y="125" text-anchor="middle" font-size="9" fill="#718096">NFV MANO</text>
-  <rect x="305" y="82" width="130" height="60" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="370" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">O-RAN Specs</text>
-  <text x="370" y="113" text-anchor="middle" font-size="9" fill="#718096">RAN Operations</text>
-  <text x="370" y="125" text-anchor="middle" font-size="9" fill="#718096">RIC, xApps</text>
+  <rect x="45" y="72" width="230" height="68" rx="5" fill="white" stroke="#bee3f8" stroke-width="1.5"/>
+  <text x="160" y="87" text-anchor="middle" font-size="9" font-weight="bold" fill="#2c5282">DOCUMENT SOURCES</text>
+  <rect x="52" y="95" width="105" height="36" rx="3" fill="#f7fafc" stroke="#bee3f8" stroke-width="1"/>
+  <text x="104" y="110" text-anchor="middle" font-size="8" font-weight="600" fill="#2d3748">GSMA Datasets</text>
+  <text x="104" y="122" text-anchor="middle" font-size="7" fill="#718096">3GPP, ETSI, O-RAN, ITU</text>
+  <rect x="163" y="95" width="105" height="36" rx="3" fill="#f7fafc" stroke="#bee3f8" stroke-width="1"/>
+  <text x="215" y="110" text-anchor="middle" font-size="8" font-weight="600" fill="#2d3748">Proprietary Docs</text>
+  <text x="215" y="122" text-anchor="middle" font-size="7" fill="#718096">Runbooks, Vendor Manuals</text>
 
-  <!-- Step 1: Data Preparation -->
-  <rect x="30" y="185" width="420" height="65" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1.5"/>
-  <text x="50" y="203" font-size="10" font-weight="bold" fill="#276749">STEP 1</text>
-  <text x="95" y="203" font-size="11" font-weight="bold" fill="#276749">Data Preparation</text>
-  <rect x="45" y="212" width="175" height="28" rx="4" fill="white" stroke="#c6f6d5" stroke-width="1"/>
-  <text x="132" y="230" text-anchor="middle" font-size="10" fill="#2d3748">Docling DocumentConverter</text>
-  <rect x="235" y="212" width="200" height="28" rx="4" fill="white" stroke="#c6f6d5" stroke-width="1"/>
-  <text x="335" y="230" text-anchor="middle" font-size="10" fill="#2d3748">HierarchicalChunker</text>
+  <!-- Docling -->
+  <rect x="310" y="72" width="170" height="68" rx="5" fill="white" stroke="#38a169" stroke-width="1.5"/>
+  <text x="395" y="87" text-anchor="middle" font-size="9" font-weight="bold" fill="#276749">Docling</text>
+  <text x="395" y="100" text-anchor="middle" font-size="8" fill="#718096">DocumentConverter</text>
+  <rect x="318" y="106" width="70" height="26" rx="3" fill="#f0fff4" stroke="#c6f6d5" stroke-width="1"/>
+  <text x="353" y="118" text-anchor="middle" font-size="7" fill="#2d3748">Hierarchical</text>
+  <text x="353" y="127" text-anchor="middle" font-size="7" fill="#2d3748">Chunker</text>
+  <rect x="395" y="106" width="70" height="26" rx="3" fill="#f0fff4" stroke="#c6f6d5" stroke-width="1"/>
+  <text x="430" y="118" text-anchor="middle" font-size="7" fill="#2d3748">Hybrid</text>
+  <text x="430" y="127" text-anchor="middle" font-size="7" fill="#2d3748">Chunker</text>
 
-  <!-- Arrow: Sources to Step 1 -->
-  <line x1="240" y1="155" x2="240" y2="185" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow: Sources to Docling -->
+  <line x1="275" y1="106" x2="310" y2="106" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- Step 2: Taxonomy Curation -->
-  <rect x="30" y="275" width="420" height="65" rx="6" fill="#faf5ff" stroke="#805ad5" stroke-width="1.5"/>
-  <text x="50" y="293" font-size="10" font-weight="bold" fill="#553c9a">STEP 2</text>
-  <text x="95" y="293" font-size="11" font-weight="bold" fill="#553c9a">Taxonomy Curation</text>
-  <rect x="45" y="302" width="390" height="28" rx="4" fill="white" stroke="#e9d8fd" stroke-width="1"/>
-  <text x="240" y="318" text-anchor="middle" font-size="10" fill="#2d3748">InstructLab Taxonomy (qna.yaml per domain)</text>
+  <!-- Structured Datasets -->
+  <rect x="520" y="72" width="210" height="45" rx="5" fill="white" stroke="#805ad5" stroke-width="1.5"/>
+  <text x="625" y="88" text-anchor="middle" font-size="9" font-weight="bold" fill="#553c9a">Structured Datasets (S3)</text>
+  <text x="625" y="101" text-anchor="middle" font-size="8" fill="#718096">MD + outlines + domain labels</text>
+  <text x="625" y="112" text-anchor="middle" font-size="7" fill="#718096">Feeds FT Layer</text>
 
-  <!-- Arrow: Step 1 to Step 2 -->
-  <line x1="240" y1="250" x2="240" y2="275" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="245" y="266" font-size="9" fill="#718096">Structured MD</text>
+  <!-- Embeddings -->
+  <rect x="520" y="124" width="210" height="45" rx="5" fill="white" stroke="#e53e3e" stroke-width="1.5"/>
+  <text x="625" y="140" text-anchor="middle" font-size="9" font-weight="bold" fill="#9b2c2c">Embeddings (PGVector)</text>
+  <text x="625" y="153" text-anchor="middle" font-size="8" fill="#718096">GSMA OTel embedding models</text>
+  <text x="625" y="164" text-anchor="middle" font-size="7" fill="#718096">Feeds Inference Layer</text>
 
-  <!-- Step 3: SDG -->
-  <rect x="30" y="365" width="420" height="75" rx="6" fill="#faf5ff" stroke="#805ad5" stroke-width="1.5"/>
-  <text x="50" y="383" font-size="10" font-weight="bold" fill="#553c9a">STEP 3</text>
-  <text x="95" y="383" font-size="11" font-weight="bold" fill="#553c9a">Synthetic Data Generation</text>
-  <rect x="45" y="392" width="200" height="38" rx="4" fill="white" stroke="#e9d8fd" stroke-width="1"/>
-  <text x="145" y="408" text-anchor="middle" font-size="10" fill="#2d3748">SDG Hub</text>
-  <text x="145" y="422" text-anchor="middle" font-size="9" fill="#718096">Knowledge Tuning Flows</text>
-  <rect x="260" y="392" width="175" height="38" rx="4" fill="#fffbeb" stroke="#d69e2e" stroke-width="1"/>
-  <text x="347" y="408" text-anchor="middle" font-size="10" fill="#744210">vLLM Teacher</text>
-  <text x="347" y="422" text-anchor="middle" font-size="9" fill="#975a16">gpt-oss-120b</text>
+  <!-- Arrow: Docling to Datasets -->
+  <line x1="480" y1="93" x2="520" y2="93" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow: Docling to Embeddings -->
+  <path d="M 480 125 L 500 125 L 500 146 L 520 146" fill="none" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- Arrow: Step 2 to Step 3 -->
-  <line x1="240" y1="340" x2="240" y2="365" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="245" y="356" font-size="9" fill="#718096">Seed datasets</text>
+  <!-- GSMA Embedding model -->
+  <rect x="770" y="124" width="280" height="45" rx="5" fill="#fffbeb" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="910" y="140" text-anchor="middle" font-size="9" font-weight="bold" fill="#744210">GSMA OTel Embeddings</text>
+  <text x="910" y="153" text-anchor="middle" font-size="8" fill="#975a16">Telecom-domain optimized | 22M-8B params | vLLM</text>
 
-  <!-- Dashed arrow: Teacher to SDG Hub -->
-  <line x1="260" y1="411" x2="245" y2="411" stroke="#718096" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowhead-dashed)"/>
+  <!-- Arrow: GSMA to PGVector -->
+  <line x1="770" y1="146" x2="730" y2="146" stroke="#718096" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowhead-dashed)"/>
 
-  <!-- Step 4: Training -->
-  <rect x="30" y="465" width="420" height="65" rx="6" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.5"/>
-  <text x="50" y="483" font-size="10" font-weight="bold" fill="#9b2c2c">STEP 4</text>
-  <text x="95" y="483" font-size="11" font-weight="bold" fill="#9b2c2c">Model Training</text>
-  <rect x="45" y="492" width="185" height="28" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="137" y="510" text-anchor="middle" font-size="10" fill="#2d3748">Training Hub (OSFT)</text>
-  <rect x="245" y="492" width="190" height="28" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="340" y="510" text-anchor="middle" font-size="10" fill="#2d3748">Kubeflow Trainer v2 (distributed)</text>
+  <!-- Shared Storage -->
+  <rect x="45" y="180" width="1005" height="35" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
+  <text x="550" y="196" text-anchor="middle" font-size="9" font-weight="bold" fill="#2c5282">Shared Storage</text>
+  <text x="550" y="208" text-anchor="middle" font-size="8" fill="#718096">MinIO (S3) for datasets + checkpoints | PGVector for embeddings | HuggingFace for GSMA datasets</text>
 
-  <!-- Arrow: Step 3 to Step 4 -->
-  <line x1="240" y1="440" x2="240" y2="465" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="245" y="456" font-size="9" fill="#718096">JSONL messages</text>
+  <!-- ===== Data to FT arrow ===== -->
+  <path d="M 200 227 L 200 260" fill="none" stroke="#805ad5" stroke-width="2" marker-end="url(#arrowhead-purple)"/>
+  <rect x="130" y="232" width="120" height="15" rx="3" fill="#faf5ff" stroke="none"/>
+  <text x="190" y="243" text-anchor="middle" font-size="8" font-weight="bold" fill="#805ad5">structured datasets</text>
 
-  <!-- Step 5: Evaluation -->
-  <rect x="30" y="555" width="420" height="55" rx="6" fill="#fffff0" stroke="#d69e2e" stroke-width="1.5"/>
-  <text x="50" y="573" font-size="10" font-weight="bold" fill="#744210">STEP 5</text>
-  <text x="95" y="573" font-size="11" font-weight="bold" fill="#744210">Comparative Evaluation</text>
-  <rect x="45" y="582" width="390" height="20" rx="4" fill="white" stroke="#fefcbf" stroke-width="1"/>
-  <text x="240" y="596" text-anchor="middle" font-size="10" fill="#2d3748">Base Model vs OSFT-Tuned vs OSFT-Tuned + RAG (Human Eval)</text>
+  <!-- ===== FINE-TUNING LAYER ===== -->
+  <rect x="30" y="255" width="400" height="230" rx="8" fill="#faf5ff" stroke="#805ad5" stroke-width="2"/>
+  <text x="50" y="273" font-size="12" font-weight="bold" fill="#553c9a">FINE-TUNING LAYER</text>
+  <text x="210" y="273" font-size="9" fill="#4a5568">Consumes Data Layer datasets</text>
 
-  <!-- Arrow: Step 4 to Step 5 -->
-  <line x1="240" y1="530" x2="240" y2="555" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="245" y="546" font-size="9" fill="#718096">safetensors checkpoint</text>
+  <!-- SDG Hub -->
+  <rect x="50" y="283" width="360" height="55" rx="5" fill="white" stroke="#e9d8fd" stroke-width="1.5"/>
+  <text x="230" y="298" text-anchor="middle" font-size="9" font-weight="bold" fill="#553c9a">SDG Hub - Knowledge Tuning Flows</text>
+  <text x="230" y="311" text-anchor="middle" font-size="8" fill="#718096">Direct from Docling structured output</text>
+  <rect x="58" y="318" width="160" height="14" rx="2" fill="#fffbeb" stroke="#d69e2e" stroke-width="1"/>
+  <text x="138" y="329" text-anchor="middle" font-size="7" fill="#744210">vLLM Teacher (gpt-oss-120b)</text>
+  <rect x="226" y="318" width="175" height="14" rx="2" fill="#faf5ff" stroke="#e9d8fd" stroke-width="1"/>
+  <text x="313" y="329" text-anchor="middle" font-size="7" fill="#553c9a">~2,000 synthetic Q&amp;A pairs (JSONL)</text>
 
-  <!-- Step 6: Registry -->
-  <rect x="30" y="635" width="420" height="55" rx="6" fill="#ebf8ff" stroke="#3182ce" stroke-width="1.5"/>
-  <text x="50" y="653" font-size="10" font-weight="bold" fill="#2c5282">STEP 6</text>
-  <text x="95" y="653" font-size="11" font-weight="bold" fill="#2c5282">Model Registry + Serving</text>
-  <rect x="45" y="660" width="155" height="22" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="122" y="675" text-anchor="middle" font-size="10" fill="#2d3748">RHOAI Model Registry</text>
-  <rect x="215" y="660" width="220" height="22" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="325" y="675" text-anchor="middle" font-size="10" fill="#2d3748">KServe + vLLM (GPT OSS 20B fine-tuned)</text>
+  <!-- Arrow: SDG to Training -->
+  <line x1="230" y1="338" x2="230" y2="352" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- Arrow: Step 5 to Step 6 -->
-  <line x1="240" y1="610" x2="240" y2="635" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="245" y="626" font-size="9" fill="#718096">passes eval, register</text>
+  <!-- Training Hub -->
+  <rect x="50" y="355" width="360" height="42" rx="5" fill="white" stroke="#e53e3e" stroke-width="1.5"/>
+  <text x="230" y="372" text-anchor="middle" font-size="9" font-weight="bold" fill="#9b2c2c">Training Hub (OSFT) + Kubeflow Trainer v2</text>
+  <text x="230" y="385" text-anchor="middle" font-size="8" fill="#718096">GPT OSS 20B student</text>
 
-  <!-- Kubeflow Pipelines wrapper (dashed border around Steps 1-6) -->
-  <rect x="18" y="175" width="445" height="525" rx="8" fill="none" stroke="#a0aec0" stroke-width="1.5" stroke-dasharray="6,4"/>
-  <text x="460" y="192" text-anchor="end" font-size="8" font-weight="bold" fill="#718096">Kubeflow Pipelines (production)</text>
+  <!-- Arrow: Training to Eval -->
+  <line x1="230" y1="397" x2="230" y2="411" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- ===== CONTINUOUS REFRESH LOOP (bottom-left) ===== -->
-  <rect x="30" y="720" width="420" height="65" rx="6" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
-  <text x="50" y="740" font-size="10" font-weight="bold" fill="#2b6cb0">CONTINUOUS REFRESH</text>
-  <text x="195" y="740" font-size="9" fill="#4a5568">S3 event / cron trigger re-runs pipeline</text>
-  <rect x="45" y="748" width="120" height="28" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="105" y="766" text-anchor="middle" font-size="9" fill="#2d3748">Doc Diff (hash)</text>
-  <rect x="175" y="748" width="130" height="28" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="240" y="766" text-anchor="middle" font-size="9" fill="#2d3748">Incremental SDG</text>
-  <rect x="315" y="748" width="120" height="28" rx="4" fill="white" stroke="#bee3f8" stroke-width="1"/>
-  <text x="375" y="760" text-anchor="middle" font-size="9" fill="#2d3748">OSFT from latest</text>
-  <text x="375" y="772" text-anchor="middle" font-size="9" fill="#2d3748">checkpoint</text>
+  <!-- Eval + Registry -->
+  <rect x="50" y="414" width="170" height="42" rx="5" fill="white" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="135" y="432" text-anchor="middle" font-size="9" font-weight="bold" fill="#744210">Eval Hub</text>
+  <text x="135" y="447" text-anchor="middle" font-size="8" fill="#718096">Base vs OSFT vs OSFT+RAG</text>
 
-  <!-- Refresh loop arrow: from Step 6 back up to Sources -->
-  <path d="M 12 670 L 12 105 L 30 105" fill="none" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#arrowhead-refresh)"/>
-  <text x="8" y="400" font-size="9" font-weight="bold" fill="#2b6cb0" transform="rotate(-90, 8, 400)">new docs trigger re-run</text>
+  <rect x="240" y="414" width="170" height="42" rx="5" fill="white" stroke="#3182ce" stroke-width="1.5"/>
+  <text x="325" y="432" text-anchor="middle" font-size="9" font-weight="bold" fill="#2c5282">Registry + Deploy</text>
+  <text x="325" y="447" text-anchor="middle" font-size="8" fill="#718096">RHOAI Registry | KServe + vLLM</text>
 
-  <!-- Arrow: Refresh to Step 1 -->
-  <line x1="240" y1="720" x2="240" y2="690" stroke="#2b6cb0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <path d="M 450 750 L 470 750 L 470 105 L 450 105" fill="none" stroke="#2b6cb0" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead-refresh)"/>
-  <text x="475" y="430" font-size="9" fill="#2b6cb0" transform="rotate(-90, 475, 430)">canary deploy new version</text>
+  <!-- Arrow: Eval to Registry -->
+  <line x1="220" y1="435" x2="240" y2="435" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- ===== SERVING + RAG (Right column) ===== -->
+  <!-- Kubeflow wrapper -->
+  <rect x="40" y="278" width="380" height="185" rx="5" fill="none" stroke="#a0aec0" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="415" y="290" text-anchor="end" font-size="7" font-weight="bold" fill="#718096">Kubeflow Pipelines</text>
 
-  <!-- Serving + RAG container -->
-  <rect x="520" y="55" width="430" height="390" rx="6" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.5"/>
-  <text x="540" y="75" font-size="11" font-weight="bold" fill="#9b2c2c">INFERENCE + RAG (Serving Layer)</text>
-  <text x="935" y="75" text-anchor="end" font-size="8" fill="#9b2c2c">rh-ai-quickstart/ai-architecture-charts</text>
-  <text x="540" y="92" font-size="9" fill="#718096">Augments fine-tuned model with new documents added after training</text>
+  <!-- ===== INTER-LAYER ARROWS ===== -->
 
-  <!-- New Documents input -->
-  <rect x="540" y="105" width="395" height="50" rx="4" fill="#ebf8ff" stroke="#3182ce" stroke-width="1"/>
-  <text x="737" y="123" text-anchor="middle" font-size="10" font-weight="600" fill="#2c5282">New / Updated Documents (post-training)</text>
-  <text x="737" y="138" text-anchor="middle" font-size="9" fill="#718096">Vendor bulletins, updated runbooks, new RAN configs, live alerts</text>
+  <!-- FT to Inference (deploy model) -->
+  <path d="M 325 456 L 325 510 L 745 510 L 745 530" fill="none" stroke="#3182ce" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <rect x="475" y="502" width="85" height="14" rx="3" fill="#f7fafc" stroke="none"/>
+  <text x="517" y="512" text-anchor="middle" font-size="8" fill="#3182ce">deploy model</text>
 
-  <!-- Ingestion sub-pipeline -->
-  <rect x="540" y="170" width="185" height="55" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="632" y="188" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">Ingestion Pipeline</text>
-  <text x="632" y="203" text-anchor="middle" font-size="9" fill="#718096">Docling + HybridChunker</text>
-  <text x="632" y="216" text-anchor="middle" font-size="9" fill="#718096">Token-aware splitting</text>
+  <!-- Data to Inference (embeddings) -->
+  <path d="M 625 169 L 625 227 L 450 227 L 450 510 L 130 510 L 130 530" fill="none" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <rect x="213" y="502" width="72" height="14" rx="3" fill="#f7fafc" stroke="none"/>
+  <text x="249" y="512" text-anchor="middle" font-size="8" fill="#9b2c2c">embeddings</text>
 
-  <!-- Embedding -->
-  <rect x="740" y="170" width="195" height="55" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="837" y="188" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">Embedding Model</text>
-  <text x="837" y="203" text-anchor="middle" font-size="9" fill="#718096">Granite / BGE-M3</text>
-  <text x="837" y="216" text-anchor="middle" font-size="9" fill="#718096">on vLLM</text>
-
-  <!-- Arrow: New Docs to Ingestion -->
-  <line x1="632" y1="155" x2="632" y2="170" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-
-  <!-- Arrow: Ingestion to Embedding -->
-  <line x1="725" y1="197" x2="740" y2="197" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- ===== INFERENCE LAYER ===== -->
+  <rect x="30" y="500" width="1040" height="165" rx="8" fill="#fff5f5" stroke="#e53e3e" stroke-width="2"/>
+  <text x="50" y="520" font-size="12" font-weight="bold" fill="#9b2c2c">INFERENCE LAYER</text>
+  <text x="200" y="520" font-size="9" fill="#4a5568">Consumes Data Layer embeddings + FT Layer model</text>
+  <text x="1055" y="520" text-anchor="end" font-size="7" fill="#9b2c2c">rh-ai-quickstart/ai-architecture-charts</text>
 
   <!-- PGVector -->
-  <rect x="540" y="245" width="395" height="45" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="737" y="263" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">PGVector</text>
-  <text x="737" y="278" text-anchor="middle" font-size="9" fill="#718096">Vector similarity search (knowledge base)</text>
+  <rect x="50" y="535" width="155" height="42" rx="5" fill="white" stroke="#fed7d7" stroke-width="1.5"/>
+  <text x="127" y="553" text-anchor="middle" font-size="9" font-weight="bold" fill="#2d3748">PGVector</text>
+  <text x="127" y="566" text-anchor="middle" font-size="8" fill="#718096">Data Layer embeddings</text>
 
-  <!-- Arrow: Embedding to PGVector -->
-  <line x1="837" y1="225" x2="837" y2="245" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="845" y="238" font-size="9" fill="#718096">vectors</text>
+  <!-- OGX -->
+  <rect x="240" y="535" width="300" height="42" rx="5" fill="white" stroke="#fed7d7" stroke-width="1.5"/>
+  <text x="390" y="553" text-anchor="middle" font-size="9" font-weight="bold" fill="#2d3748">OGX / Llama Stack (RAG Orchestration)</text>
+  <text x="390" y="566" text-anchor="middle" font-size="8" fill="#718096">Query -&gt; Retrieve -&gt; Augment -&gt; Generate</text>
 
-  <!-- OGX / Llama Stack -->
-  <rect x="540" y="310" width="395" height="50" rx="4" fill="white" stroke="#fed7d7" stroke-width="1"/>
-  <text x="737" y="330" text-anchor="middle" font-size="10" font-weight="600" fill="#2d3748">OGX / Llama Stack (RAG Orchestration)</text>
-  <text x="737" y="345" text-anchor="middle" font-size="9" fill="#718096">Query -&gt; Retrieve context -&gt; Augment prompt -&gt; Generate answer</text>
+  <!-- KServe + vLLM -->
+  <rect x="575" y="535" width="290" height="42" rx="5" fill="#fffbeb" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="720" y="553" text-anchor="middle" font-size="9" font-weight="bold" fill="#744210">KServe + vLLM (GPT OSS 20B fine-tuned)</text>
+  <text x="720" y="566" text-anchor="middle" font-size="8" fill="#975a16">Direct queries + RAG-augmented generation</text>
 
   <!-- Arrow: PGVector to OGX -->
-  <line x1="737" y1="290" x2="737" y2="310" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="745" y="303" font-size="9" fill="#718096">retrieval</text>
-
-  <!-- Fine-tuned model box inside RAG area -->
-  <rect x="540" y="380" width="395" height="45" rx="4" fill="#fffbeb" stroke="#d69e2e" stroke-width="1"/>
-  <text x="737" y="398" text-anchor="middle" font-size="10" font-weight="600" fill="#744210">KServe + vLLM (GPT OSS 20B fine-tuned)</text>
-  <text x="737" y="413" text-anchor="middle" font-size="9" fill="#975a16">Serves both direct queries and RAG-augmented generation</text>
-
+  <line x1="205" y1="556" x2="240" y2="556" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
   <!-- Arrow: OGX to vLLM -->
-  <line x1="737" y1="360" x2="737" y2="380" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="745" y="373" font-size="9" fill="#718096">augmented prompt</text>
-
-  <!-- Arrow: Step 6 to Serving layer (model deployment) -->
-  <path d="M 450 670 L 510 670 L 510 402 L 540 402" fill="none" stroke="#3182ce" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="515" y="540" font-size="9" fill="#3182ce" transform="rotate(-90, 515, 540)">deploy model</text>
+  <line x1="540" y1="556" x2="575" y2="556" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
   <!-- Demo -->
-  <rect x="520" y="470" width="430" height="60" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1.5"/>
-  <text x="540" y="490" font-size="10" font-weight="bold" fill="#276749">DEMO</text>
-  <text x="580" y="490" font-size="11" font-weight="bold" fill="#276749">Streamlit Chat Application</text>
-  <text x="935" y="490" text-anchor="end" font-size="8" fill="#276749">ai-architecture-charts</text>
-  <rect x="540" y="500" width="395" height="22" rx="4" fill="white" stroke="#c6f6d5" stroke-width="1"/>
-  <text x="737" y="515" text-anchor="middle" font-size="10" fill="#2d3748">NOC Engineer Chat UI - Answers + Source Citations</text>
+  <rect x="50" y="593" width="815" height="38" rx="5" fill="white" stroke="#38a169" stroke-width="1.5"/>
+  <text x="70" y="614" font-size="9" font-weight="bold" fill="#276749">DEMO</text>
+  <text x="110" y="614" font-size="10" font-weight="bold" fill="#276749">Streamlit Chat Application</text>
+  <text x="850" y="614" text-anchor="end" font-size="7" fill="#276749">ai-architecture-charts</text>
+  <text x="460" y="626" text-anchor="middle" font-size="8" fill="#718096">NOC Engineer Chat UI - Answers + Source Citations</text>
 
-  <!-- Arrow: Serving to Demo -->
-  <line x1="737" y1="425" x2="737" y2="470" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="745" y="450" font-size="9" fill="#718096">answer + sources</text>
+  <!-- Arrow: vLLM to Demo -->
+  <line x1="720" y1="577" x2="720" y2="593" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
-  <!-- Infrastructure bar -->
-  <rect x="30" y="890" width="920" height="70" rx="6" fill="#edf2f7" stroke="#a0aec0" stroke-width="1"/>
-  <text x="55" y="910" font-size="11" font-weight="bold" fill="#4a5568">SHARED INFRASTRUCTURE</text>
-  <rect x="45" y="920" width="110" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="100" y="938" text-anchor="middle" font-size="9" fill="#2d3748">OpenShift + RHOAI</text>
-  <rect x="165" y="920" width="110" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="220" y="938" text-anchor="middle" font-size="9" fill="#2d3748">NVIDIA GPU Op.</text>
-  <rect x="285" y="920" width="80" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="325" y="938" text-anchor="middle" font-size="9" fill="#2d3748">MinIO / S3</text>
-  <rect x="375" y="920" width="120" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="435" y="938" text-anchor="middle" font-size="9" fill="#2d3748">Kubeflow Pipelines</text>
-  <rect x="505" y="920" width="100" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="555" y="938" text-anchor="middle" font-size="9" fill="#2d3748">PGVector</text>
-  <rect x="615" y="920" width="90" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="660" y="938" text-anchor="middle" font-size="9" fill="#2d3748">HF Token</text>
-  <rect x="715" y="920" width="100" height="28" rx="4" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="765" y="938" text-anchor="middle" font-size="9" fill="#2d3748">Helm Charts</text>
+  <!-- ===== INFRASTRUCTURE ===== -->
+  <rect x="30" y="690" width="1040" height="55" rx="6" fill="#edf2f7" stroke="#a0aec0" stroke-width="1"/>
+  <text x="55" y="708" font-size="10" font-weight="bold" fill="#4a5568">SHARED INFRASTRUCTURE</text>
+  <rect x="50" y="716" width="100" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="100" y="731" text-anchor="middle" font-size="8" fill="#2d3748">OpenShift + RHOAI</text>
+  <rect x="158" y="716" width="115" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="215" y="731" text-anchor="middle" font-size="7" fill="#2d3748">NVIDIA GPU Operator</text>
+  <rect x="281" y="716" width="70" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="316" y="731" text-anchor="middle" font-size="8" fill="#2d3748">MinIO / S3</text>
+  <rect x="359" y="716" width="105" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="411" y="731" text-anchor="middle" font-size="8" fill="#2d3748">Kubeflow Pipelines</text>
+  <rect x="472" y="716" width="80" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="512" y="731" text-anchor="middle" font-size="8" fill="#2d3748">PGVector</text>
+  <rect x="560" y="716" width="72" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="596" y="731" text-anchor="middle" font-size="8" fill="#2d3748">HF Token</text>
+  <rect x="640" y="716" width="85" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="682" y="731" text-anchor="middle" font-size="8" fill="#2d3748">Helm Charts</text>
 
   <!-- Legend -->
-  <rect x="520" y="560" width="430" height="135" rx="6" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="540" y="580" font-size="11" font-weight="bold" fill="#2d3748">Legend</text>
-  <line x1="540" y1="598" x2="580" y2="598" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="590" y="602" font-size="10" fill="#4a5568">Data flow</text>
-  <line x1="540" y1="618" x2="580" y2="618" stroke="#718096" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowhead-dashed)"/>
-  <text x="590" y="622" font-size="10" fill="#4a5568">Generates / orchestrates</text>
-  <line x1="540" y1="638" x2="580" y2="638" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#arrowhead-refresh)"/>
-  <text x="590" y="642" font-size="10" fill="#2b6cb0">Continuous refresh loop</text>
-  <rect x="540" y="652" width="14" height="14" rx="2" fill="#faf5ff" stroke="#805ad5" stroke-width="1"/>
-  <text x="562" y="664" font-size="10" fill="#4a5568">Knowledge Tuning Pipeline (SDG + OSFT Training)</text>
-  <rect x="540" y="672" width="14" height="14" rx="2" fill="#fff5f5" stroke="#e53e3e" stroke-width="1"/>
-  <text x="562" y="684" font-size="10" fill="#4a5568">Serving + RAG (handles new docs post-training)</text>
+  <rect x="470" y="255" width="310" height="110" rx="5" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="490" y="273" font-size="10" font-weight="bold" fill="#2d3748">Layers</text>
+  <rect x="490" y="280" width="12" height="12" rx="2" fill="#ebf8ff" stroke="#3182ce" stroke-width="1.5"/>
+  <text x="508" y="291" font-size="9" fill="#2d3748">Data: parse, chunk, embed (shared)</text>
+  <rect x="490" y="298" width="12" height="12" rx="2" fill="#faf5ff" stroke="#805ad5" stroke-width="1.5"/>
+  <text x="508" y="309" font-size="9" fill="#2d3748">Fine-Tuning: SDG, OSFT, eval, registry</text>
+  <rect x="490" y="316" width="12" height="12" rx="2" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.5"/>
+  <text x="508" y="327" font-size="9" fill="#2d3748">Inference: RAG retrieval + serving</text>
+  <rect x="490" y="334" width="12" height="12" rx="2" fill="#fffbeb" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="508" y="345" font-size="9" fill="#2d3748">LLM models (teacher / student / embed)</text>
 </svg>
