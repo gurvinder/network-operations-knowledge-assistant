@@ -21,16 +21,14 @@ Training Hub fine-tunes GPT OSS 20B on the synthetic Q&A data using OSFT (Orthog
 
 ```python
 osft_config = {
-    "algorithm": "osft",
-    "model_name_or_path": "openai/gpt-oss-20b",
+    "model_path": "openai/gpt-oss-20b",
     "unfreeze_rank_ratio": 0.25,
     "learning_rate": 2e-5,
-    "num_train_epochs": 3,
-    "per_device_train_batch_size": 1,
-    "gradient_accumulation_steps": 16,
-    "bf16": True,
-    "output_dir": "/output/osft-noc",
-    "save_strategy": "epoch",
+    "num_epochs": 3,
+    "effective_batch_size": 16,
+    "max_tokens_per_gpu": 4096,
+    "max_seq_len": 4096,
+    "ckpt_output_dir": "/output/osft-noc",
 }
 ```
 
@@ -45,7 +43,11 @@ osft(
     model_path="openai/gpt-oss-20b",
     data_path="s3://noc-pipeline/sdg-output/sdg_output.jsonl",
     unfreeze_rank_ratio=0.25,
-    output_dir="/output/osft-noc",
+    learning_rate=2e-5,
+    effective_batch_size=16,
+    max_tokens_per_gpu=4096,
+    max_seq_len=4096,
+    ckpt_output_dir="/output/osft-noc",
 )
 ```
 
@@ -64,7 +66,7 @@ spec:
     name: osft-clustertrainingruntime
   trainer:
     image: quay.io/rh-ai-quickstart/training-hub-osft:latest
-    command: ["python", "-m", "training_hub.train_osft"]
+    command: ["thub", "osft", "--config", "/etc/config.yaml"]
     env:
       - name: MODEL_NAME
         value: "openai/gpt-oss-20b"
@@ -96,7 +98,7 @@ kubectl get trainjob noc-assistant-osft -n <your-namespace> -w
 
 ### 3.4 Incremental Training (Continuous Refresh)
 
-For subsequent training runs on new documents, resume from the latest checkpoint:
+For subsequent training runs on new documents, pass the previous checkpoint as `model_path`:
 
 ```python
 osft(
@@ -104,8 +106,11 @@ osft(
     data_path="s3://noc-pipeline/sdg-output/incremental_sdg.jsonl",
     unfreeze_rank_ratio=0.25,
     learning_rate=1e-5,       # lower LR for incremental
-    num_train_epochs=1,        # fewer epochs
-    output_dir="/output/osft-noc-v2",
+    num_epochs=1,              # fewer epochs
+    effective_batch_size=16,
+    max_tokens_per_gpu=4096,
+    max_seq_len=4096,
+    ckpt_output_dir="/output/osft-noc-v2",
 )
 ```
 

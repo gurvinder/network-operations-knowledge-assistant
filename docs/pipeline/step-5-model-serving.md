@@ -48,7 +48,7 @@ metadata:
   name: gpt-oss-20b-noc-tuned
   namespace: <your-namespace>
   annotations:
-    serving.kserve.io/deploymentMode: RawDeployment
+    serving.kserve.io/deploymentMode: Standard
 spec:
   predictor:
     model:
@@ -75,7 +75,7 @@ kubectl get inferenceservice gpt-oss-20b-noc-tuned -n <your-namespace>
 ### 5.3 Verify the Endpoint
 
 ```bash
-curl -X POST http://gpt-oss-20b-noc-tuned.<your-namespace>.svc/v1/chat/completions \
+curl -X POST http://gpt-oss-20b-noc-tuned-predictor.<your-namespace>.svc.cluster.local/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-oss-20b-noc-tuned",

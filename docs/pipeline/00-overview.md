@@ -34,7 +34,7 @@ The assistant is built using a 3-layer architecture: a shared **Data Layer** pro
 | Fine-Tuning | [Eval Hub](https://github.com/eval-hub/eval-hub) | RHOAI | Standardized model evaluation across configurations |
 | Fine-Tuning | RHOAI Model Registry + [KServe](https://github.com/kserve/kserve) + [vLLM](https://github.com/vllm-project/vllm) | RHOAI | Native registry workflow, serverless autoscaling, OpenAI-compatible API |
 | Inference | OGX/Llama Stack + Ingestion Pipeline | [rh-ai-quickstart/ai-architecture-charts](https://github.com/rh-ai-quickstart/ai-architecture-charts) | RAG orchestration using Data Layer embeddings + FT Layer model |
-| Demo | [Streamlit](https://github.com/streamlit/streamlit) (via ai-architecture-charts) | [rh-ai-quickstart/ai-architecture-charts](https://github.com/rh-ai-quickstart/ai-architecture-charts) | Deployed alongside the RAG stack; chat UI with source citations |
+| Demo | RHOAI Gen AI Studio (via ai-architecture-charts `playground` chart) | [rh-ai-quickstart/ai-architecture-charts](https://github.com/rh-ai-quickstart/ai-architecture-charts) | Registers OGX endpoint, vector stores, and MCP servers with RHOAI dashboard |
 
 ## Architecture Summary
 
@@ -57,7 +57,7 @@ Both outputs are persisted in shared storage (S3 for datasets, PGVector for embe
 
 Consumes the structured datasets from the Data Layer:
 
-1. **SDG Hub** consumes the Docling structured output directly using the Key Facts flow for initial bootstrap and the Extractive Summary Knowledge Tuning flow for full-scale generation. A **vLLM Teacher Model** (gpt-oss-120b) generates ~2,000 synthetic Q&A pairs with faithfulness and relevancy scoring. Quality-filtered outputs are formatted as OpenAI-format messages JSONL.
+1. **SDG Hub** consumes the Docling structured output directly using the Key Facts flow for initial bootstrap and the Extractive Summary Knowledge Tuning flow for full-scale generation (2 of 4 available knowledge tuning flows). A **vLLM Teacher Model** (gpt-oss-120b) generates ~2,000 synthetic Q&A pairs (configurable) with built-in faithfulness and relevancy filtering. Quality-filtered outputs are formatted as OpenAI-format messages JSONL.
 
 2. **Training Hub** fine-tunes **GPT OSS 20B** on the synthetic data using **OSFT** (Orthogonal Subspace Fine-Tuning), which injects domain knowledge while preserving the base model's general capabilities. Training is orchestrated at scale via **Kubeflow Trainer v2** TrainJob resources on OpenShift.
 
@@ -69,7 +69,7 @@ Consumes outputs from both the Data Layer (embeddings) and Fine-Tuning Layer (mo
 
 The fine-tuned model is served via **KServe + vLLM**. The RAG pipeline is deployed via the **Ingestion Pipeline** chart (from [`rh-ai-quickstart/ai-architecture-charts`](https://github.com/rh-ai-quickstart/ai-architecture-charts)). **OGX** (or Llama Stack) orchestrates the RAG query pipeline — retrieving relevant document chunks from **PGVector** (populated by the Data Layer) and augmenting prompts to the fine-tuned model for grounded, source-cited responses.
 
-A **Streamlit** chat application (deployed via the ai-architecture-charts pattern) provides the demo interface, displaying the assistant's answers alongside retrieved source passages and document citations.
+The **RHOAI Gen AI Studio** (deployed via the `playground` chart from ai-architecture-charts) provides the demo interface, displaying the assistant's answers alongside retrieved source passages and document citations.
 
 ## Knowledge Domains
 
@@ -88,7 +88,7 @@ Deployment of the RAG and demo layers uses Helm charts from [`rh-ai-quickstart/a
 | Component | Chart | Purpose |
 |-----------|-------|---------|
 | OpenShift + RHOAI | Platform | Platform layer |
-| NVIDIA GPU Operator | Platform | GPU access for Data, FT, and Inference layers |
+| GPU Operator | Platform | GPU access for Data, FT, and Inference layers |
 | MinIO | `minio` | S3-compatible object storage for datasets, checkpoints, model artifacts |
 | PGVector | `pgvector` | Vector database shared by Data and Inference layers |
 | LLM Service | `llm-service` | vLLM-based model serving with OpenAI-compatible API |
@@ -129,7 +129,6 @@ Configurations below are sized for the models specified in Model Configuration a
 | OGX / Llama Stack | MIT |
 | KServe | Apache 2.0 |
 | Ingestion Pipeline | Apache 2.0 |
-| Streamlit | Apache 2.0 |
 | ai-architecture-charts | Apache 2.0 |
 | GSMA Datasets | Apache 2.0 |
 | RHOAI | Red Hat Subscription |

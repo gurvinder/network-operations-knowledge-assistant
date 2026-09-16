@@ -87,10 +87,14 @@ Use `HybridChunker` for embedding-ready chunks:
 
 ```python
 from docling.chunking import HybridChunker
+from docling_core.transforms.chunker.tokenizer.huggingface import HuggingFaceTokenizer
 
-chunker = HybridChunker(
+hf_tokenizer = HuggingFaceTokenizer(
     tokenizer=my_tokenizer,  # GSMA OTel embedding tokenizer
     max_tokens=512,
+)
+chunker = HybridChunker(
+    tokenizer=hf_tokenizer,
     merge_peers=True,
 )
 chunks = list(chunker.chunk(doc))

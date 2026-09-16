@@ -167,10 +167,10 @@
 
   <!-- Demo -->
   <rect x="50" y="593" width="815" height="38" rx="5" fill="white" stroke="#38a169" stroke-width="1.5"/>
-  <text x="70" y="614" font-size="9" font-weight="bold" fill="#276749">DEMO</text>
-  <text x="110" y="614" font-size="10" font-weight="bold" fill="#276749">Streamlit Chat Application</text>
-  <text x="850" y="614" text-anchor="end" font-size="7" fill="#276749">ai-architecture-charts</text>
-  <text x="460" y="626" text-anchor="middle" font-size="8" fill="#718096">NOC Engineer Chat UI - Answers + Source Citations</text>
+  <text x="70" y="614" font-size="9" font-weight="bold" fill="#276749">NOC Assistant</text>
+  <text x="155" y="614" font-size="10" font-weight="bold" fill="#276749">RHOAI Gen AI Studio</text>
+  <text x="850" y="614" text-anchor="end" font-size="7" fill="#276749">playground chart</text>
+  <text x="460" y="626" text-anchor="middle" font-size="8" fill="#718096">Chat UI + Source Citations + Vector Store Integration</text>
 
   <!-- Arrow: vLLM to Demo -->
   <line x1="720" y1="577" x2="720" y2="593" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowhead)"/>
@@ -181,7 +181,7 @@
   <rect x="50" y="716" width="100" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
   <text x="100" y="731" text-anchor="middle" font-size="8" fill="#2d3748">OpenShift + RHOAI</text>
   <rect x="158" y="716" width="115" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
-  <text x="215" y="731" text-anchor="middle" font-size="7" fill="#2d3748">NVIDIA GPU Operator</text>
+  <text x="215" y="731" text-anchor="middle" font-size="7" fill="#2d3748">GPU Operator</text>
   <rect x="281" y="716" width="70" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
   <text x="316" y="731" text-anchor="middle" font-size="8" fill="#2d3748">MinIO / S3</text>
   <rect x="359" y="716" width="105" height="22" rx="3" fill="white" stroke="#cbd5e0" stroke-width="1"/>
