@@ -57,7 +57,8 @@ Both outputs are persisted in shared storage (S3 for datasets, PGVector for embe
 
 Consumes the structured datasets from the Data Layer:
 
-1. **SDG Hub** consumes the Docling structured output directly using the Key Facts flow for initial bootstrap and the Extractive Summary Knowledge Tuning flow for full-scale generation (2 of 4 available knowledge tuning flows). A **vLLM Teacher Model** (gpt-oss-120b) generates ~2,000 synthetic Q&A pairs (configurable) with built-in faithfulness and relevancy filtering. Quality-filtered outputs are formatted as OpenAI-format messages JSONL.
+1. **SDG Hub** consumes the Docling structured output directly using all 4 knowledge tuning flows — Extractive Summary, Detailed Summary, Key Facts, and Document Based. A
+**vLLM Teacher Model** (gpt-oss-120b) generates synthetic Q&A pairs across each flow type, with built-in faithfulness filtering. The outputs are combined via a mixing step into a single training dataset formatted as OpenAI-format messages JSONL.
 
 2. **Training Hub** fine-tunes **GPT OSS 20B** on the synthetic data using **OSFT** (Orthogonal Subspace Fine-Tuning), which injects domain knowledge while preserving the base model's general capabilities. Training is orchestrated at scale via **Kubeflow Trainer v2** TrainJob resources on OpenShift.
 
